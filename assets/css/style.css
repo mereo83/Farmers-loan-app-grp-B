@@ -1,0 +1,106 @@
+ /* CSS styles */
+ body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.form-container {
+  width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+.form-group button {  
+  width: 100%;
+  padding: 10px;
+  background-color: #4c7daf;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.customers-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.customers-table th,
+.customers-table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.customers-table th {
+  background-color: #f2f2f2;
+}
+
+.success {
+  color: #4c7daf;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.error {
+  color: #FF0000;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Additional styles for the dashboard */
+#dashboard {
+  margin-top: 50px;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dashboard-card {
+  width: 100%;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.dashboard-card h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.dashboard-card p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
