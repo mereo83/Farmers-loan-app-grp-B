@@ -68,7 +68,7 @@ function recordDebt() {
 }
 
 function recordSupply() {
-  const customerName = getValueById('supplyName');
+  const customerName = getValueById('customerName');
   const supplyAmount = parseFloat(getValueById('supplyAmount'));
 
   if (customerName && supplyAmount) {
@@ -78,7 +78,7 @@ function recordSupply() {
       customer.supplied += supplyAmount;
       showCustomers();
       showMessage('success', 'Supply recorded successfully.');
-      clearInputFields('supplyName', 'supplyAmount');
+      clearInputFields('customerName', 'supplyAmount');
     } else {
       showMessage('error', `Customer "${customerName}" not found.`);
     }
@@ -92,7 +92,10 @@ function searchCustomer() {
   const result = customers.find((customer) => customer.name === searchName);
 
   if (result) {
-    showMessage('success', `Customer "${result.name}" found. Amount Supplied: $${result.supplied}, Amount Borrowed: $${result.borrowed}, Balance Amount: $${result.supplied - result.borrowed}`);
+    showMessage(
+      'success',
+      `Customer "${result.name}" found. Amount Supplied: $${result.supplied}, Amount Borrowed: $${result.borrowed}, Balance Amount: $${result.supplied - result.borrowed}`
+    );
   } else {
     showMessage('error', `Customer "${searchName}" not found.`);
   }
@@ -153,10 +156,10 @@ function viewStatement(customer) {
 }
 
 function showMessage(type, message) {
-  const messageContainer = createElement('div');
+  const messageContainer = document.createElement('div');
   messageContainer.className = type;
   messageContainer.textContent = message;
-  insertBefore(messageContainer, getById('dashboard'));
+  getById('dashboard').insertBefore(messageContainer, getById('dashboard').firstChild);
   setTimeout(() => {
     messageContainer.remove();
   }, 3000);
@@ -167,20 +170,23 @@ function getValueById(id) {
 }
 
 function clearInputFields(...ids) {
-  ids.forEach((id) => (getById(id).value = ''));
+  ids.forEach((id) => {
+    getById(id).value = '';
+  });
 }
 
 function getById(id) {
   return document.getElementById(id);
 }
 
-function getSelector(selector) {
-  return document.querySelector(selector);
-}
-
 function createElement(tagName) {
   return document.createElement(tagName);
 }
 
+function getSelector(selector) {
+  return document.querySelector(selector);
+}
+
+// Initially, show the dashboard and customers
 showDashboard();
 showCustomers();
