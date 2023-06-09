@@ -72,7 +72,7 @@ function recordSupply() {
   const supplyAmount = parseFloat(getValueById('supplyAmount'));
 
   if (customerName && supplyAmount) {
-    const customer = customers.find((customer) => customer.name === customerName);
+    const customer = findCustomerByName(customerName);
 
     if (customer) {
       customer.supplied += supplyAmount;
@@ -87,14 +87,18 @@ function recordSupply() {
   }
 }
 
+function findCustomerByName(name) {
+  return customers.find((customer) => customer.name === name);
+}
+
 function searchCustomer() {
   const searchName = getValueById('searchName');
-  const result = customers.find((customer) => customer.name === searchName);
+  const customer = findCustomerByName(searchName);
 
-  if (result) {
+  if (customer) {
     showMessage(
       'success',
-      `Customer "${result.name}" found. Amount Supplied: $${result.supplied}, Amount Borrowed: $${result.borrowed}, Balance Amount: $${result.supplied - result.borrowed}`
+      `Customer "${customer.name}" found. Amount Supplied: $${customer.supplied}, Amount Borrowed: $${customer.borrowed}, Balance Amount: $${customer.supplied - customer.borrowed}`
     );
   } else {
     showMessage('error', `Customer "${searchName}" not found.`);
@@ -156,7 +160,7 @@ function viewStatement(customer) {
 }
 
 function showMessage(type, message) {
-  const messageContainer = document.createElement('div');
+  const messageContainer = createElement('div');
   messageContainer.className = type;
   messageContainer.textContent = message;
   getById('dashboard').insertBefore(messageContainer, getById('dashboard').firstChild);
